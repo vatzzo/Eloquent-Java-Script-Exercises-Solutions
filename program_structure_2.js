@@ -29,7 +29,6 @@ while (i <= 100) {
 const dash = "#";
 const space = " ";
 let outputString = " ";
-console.log("3. Chessboard");
 for (let rows = 1; rows <= 8; rows++) {
   switch (rows % 2) {
     case 0:

@@ -1,4 +1,4 @@
-// A vector type
+// ex.1 - A vector type
 class Vec {
     constructor(x, y) {
         this.x = x;
@@ -18,14 +18,19 @@ class Vec {
     }
 }
 
-// console.log(new Vec(1, 2).plus(new Vec(2,3))); // [ 3, 5 ]
-// console.log(new Vec(1, 2).minus(new Vec(2,3))); // [ -1. -1 ]
-// console.log(new Vec(3 ,4).length); // 5
+console.log(new Vec(1, 2).plus(new Vec(2,3))); // [ 3, 5 ]
+console.log(new Vec(1, 2).minus(new Vec(2,3))); // [ -1. -1 ]
+console.log(new Vec(3 ,4).length); // 5
 
-// Groups
+// ex.2 and ex.3 - Groups, Iterable Groups
 class Group {
     constructor() {
         this.x = [];
+    }
+
+    // Addition Possibility Of Iteration ( ex.3 )
+    [Symbol.iterator]() {
+        return new GroupIterator(this);
     }
 
     add(...inputs) {
@@ -65,15 +70,48 @@ class Group {
     }
 }
 
+// ex.3 - Iteration Class
+class GroupIterator {
+    constructor(group) {
+        this.iteration = 0;
+        this.group = group.x;
+    }
 
-// let group = Group.from([10,20]);
-// console.log(group.has(10)); //true
-// console.log(group.has(30)); //false
-// group.add(10);
-// group.delete(10);
-// console.log(group.has(10)); //false
+    next() {
+        if (this.iteration == this.group.length) return {done: true};
+        let value = {
+            iteration: this.iteration,
+            value: this.group[this.iteration]
+        }
+        this.iteration++;
+        return {value, done: false};
+    }
+}
 
-// Iterable Groups
+let group = Group.from([10,20,30,40,50,60]);
+
+// ex.3 - For Usage On Given Group
+for(let element of group) {
+    console.log(element);
+}
+
+console.log(group.has(10)); //true
+console.log(group.has(30)); //false
+group.add(10);
+group.delete(10);
+console.log(group.has(10)); //false
+
+//ex.4 - Borrowing A Method
+let map = {
+    one: true,
+    two: true,
+    hasOwnProperty: true
+}
+console.log(Object.prototype.hasOwnProperty.call(map,"one"));
+
+
+
+
 
 
 

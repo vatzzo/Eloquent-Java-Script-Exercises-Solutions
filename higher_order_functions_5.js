@@ -22,20 +22,20 @@ function loop(value, test, update, body) {
     }
 }
 
-//loop(4, n => { return n <= 10 } , () => { n++ }, n => console.log(n));
+loop(4, n => { return n <= 10 } , () => { n++ }, n => console.log(n));
 
 // Everything
 A = [1,2,3,4,5,6,7,8,9,10]; // Array To Check
 let valueToCheck = 7;
 
-// Every - Do all elements in array satisfy given condition
+// Every - Do all elements in array satisfy given condition?
 let everyResult = A.every(item => {
     return item == 3;
 });
 
 function every(array, predicate = function(item) {
     let boolean = item  < valueToCheck; // Check Condition
-    return boolean; // Retrun Value
+    return boolean; // Return Value
 }) {
     let current = true;
 
@@ -62,5 +62,5 @@ function everySome(array, predicate = function(item) {
 }
 
 
-//console.log(`Every: ${everyResult}, Every Function: ${every(A)}, Some: ${someResult}, EverySome Function: ${everySome(A)}`);
+console.log(`Every: ${everyResult}, Every Function: ${every(A)}, Some: ${someResult}, EverySome Function: ${everySome(A)}`);
 
